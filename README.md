@@ -2,10 +2,13 @@
 
 Steps to set up your own local Pixelfed on a Docker with MariaDb Apache and Redis:
 
+```bash
+cd /some/docker/home/dir
+````
+
 1. Clone the repo from github.com
 
 ```bash
-cd /some/docker/home/dir
 git clone https://github.com/juergenarne/pixelfed_docker_blueprint.git . 
 ````
 
