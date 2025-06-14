@@ -128,6 +128,8 @@ php artisan view:cache
 Every time you edit your .env file, you must run this command in the *-apache docker container to have the changes take effect:
 
 ```bash
+php artisan config:clear
+php artisan cache:clear
 php artisan config:cache
 ````
 
