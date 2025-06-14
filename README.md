@@ -108,22 +108,29 @@ php artisan import:cities
 
 If you enabled ActivityPub federation:
 
-bash
+```bash
 php artisan instance:actor
+````
+
 If you enabled OAuth:
 
-bash
+```bash
 php artisan passport:keys
+````
+
 Routes should be cached whenever the source code changes or whenever you change routes:
 
-bash
+```bash
 php artisan route:cache
 php artisan view:cache
+````
+
 Every time you edit your .env file, you must run this command to have the changes take effect:
 
-bash
+```bash
 php artisan config:cache
+````
 
-   __see: <https://docs.pixelfed.org/running-pixelfed/installation.html#configure-environment-variables>__
+__see: <https://docs.pixelfed.org/running-pixelfed/installation.html#configure-environment-variables>__
 
 11. Configure your Nginx Proxy
