@@ -77,6 +77,53 @@ After Docker is fully started up and running
 docker exec -it pixelfed-apache /bin/bash
 ````
   
-9. Take it from there: <https://docs.pixelfed.org/running-pixelfed/installation.html#configure-environment-variables>
+9. One time setup tasks:
 
-10. Configure your Nginx Proxy
+Setting up services
+
+One-time setup tasks
+One time only, you need to generate the secret APP_KEY:
+
+```bash
+php artisan key:generate
+````
+
+One time only, the storage/ directory must be linked to the application:
+
+```bash
+php artisan storage:link
+````
+
+Database migrations must be run:
+
+```bash
+php artisan migrate --force
+````
+
+If you want to enable support for location data:
+
+```bash
+php artisan import:cities
+````
+
+If you enabled ActivityPub federation:
+
+bash
+php artisan instance:actor
+If you enabled OAuth:
+
+bash
+php artisan passport:keys
+Routes should be cached whenever the source code changes or whenever you change routes:
+
+bash
+php artisan route:cache
+php artisan view:cache
+Every time you edit your .env file, you must run this command to have the changes take effect:
+
+bash
+php artisan config:cache
+
+   __see: <https://docs.pixelfed.org/running-pixelfed/installation.html#configure-environment-variables>__
+
+11. Configure your Nginx Proxy
