@@ -135,4 +135,4 @@ php artisan config:cache
 
 __see: <https://docs.pixelfed.org/running-pixelfed/installation.html#configure-environment-variables>__
 
-11. Configure your Nginx Proxy
+10. Configure your Nginx Proxy
