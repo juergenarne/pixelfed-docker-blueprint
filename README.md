@@ -35,30 +35,30 @@ To generate a safe password use:
 
 optionally set the variables for all ``*_PORT`` variables to values fitting your enviornments needs if you use multiple docker setups to avoid collisions
 
-3. Start the Docker enviornment
-
-```bash
-docker compose up -d --build
-````
-
-After Docker is fully started up and running:
-
-4. Change into the ``src`` directory
+3. Change into the ``src`` directory
 
 ```bash
 cd src
 ````
 
-5. Remove the ``.install.lock`` file
+4. Remove the ``.install.lock`` file
 
 ```bash
 rm .install.lock
 ````
 
-6. Run the installer
+5. Run the installer
 
 ```bash
 ./install.sh
 ````
 
-7. Configure your installation and take it from there: <https://docs.pixelfed.org/running-pixelfed/installation.html#configure-environment-variables>
+6. Configure your installation and take it from there: <https://docs.pixelfed.org/running-pixelfed/installation.html#configure-environment-variables>
+
+7. Start the Docker enviornment
+
+```bash
+docker compose up -d --build
+````
+
+After Docker is fully started up and running configure your Nginx Proxy
