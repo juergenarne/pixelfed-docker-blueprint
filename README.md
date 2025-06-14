@@ -53,7 +53,15 @@ rm .install.lock
 ./install.sh
 ````
 
-6. Configure your installation and take it from there: <https://docs.pixelfed.org/running-pixelfed/installation.html#configure-environment-variables>
+6. Configure your installation by modifying the Pixelfed ``.env`` file
+
+```bash
+cd htdocs
+vi .env
+````
+
+Modify all necessary information and add the DB credentials from the dockers ``.env`` file
+
 
 7. Start the Docker enviornment
 
@@ -61,4 +69,14 @@ rm .install.lock
 docker compose up -d --build
 ````
 
-After Docker is fully started up and running configure your Nginx Proxy
+After Docker is fully started up and running 
+
+8. Login to your apache php web container
+
+```bash
+docker exec -it pixelfed-web /bin/bash
+````
+  
+9. Take it from there: <https://docs.pixelfed.org/running-pixelfed/installation.html#configure-environment-variables>
+
+10. Configure your Nginx Proxy
