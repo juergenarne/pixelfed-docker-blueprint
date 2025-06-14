@@ -74,7 +74,7 @@ After Docker is fully started up and running
 8. Login to your apache php web container
 
 ```bash
-docker exec -it pixelfed-web /bin/bash
+docker exec -it pixelfed-apache /bin/bash
 ````
   
 9. Take it from there: <https://docs.pixelfed.org/running-pixelfed/installation.html#configure-environment-variables>
