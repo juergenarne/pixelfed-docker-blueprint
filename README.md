@@ -62,10 +62,10 @@ vi .env
 
 Modify all necessary information and add the DB credentials from the dockers ``.env`` file
 
-
 7. Start the Docker enviornment
 
 ```bash
+cd ../../
 docker compose up -d --build
 ````
 
