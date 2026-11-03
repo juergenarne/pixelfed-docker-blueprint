@@ -128,3 +128,42 @@ docker compose restart horizon
 ```
 
 See also <https://docs.pixelfed.org/running-pixelfed/installation.html>.
+
+---
+
+Die laufende Instanz im alten Layout:
+
+1. **Pushen**, damit der Server das neue Skript bekommt.
+
+2. **Probelauf** auf dem Server. Er ändert nichts:
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/juergenarne/pixelfed-docker-blueprint/master/relocate-server.sh -o /tmp/relocate-server.sh
+   sudo bash /tmp/relocate-server.sh --domain pnoom.gallery --dir /var/www/htdocs/pnoom.gallery
+   ```
+   Achte dabei auf diese Zeilen:
+   - `Pixelfed .env: DB_HOST=…`: Daran sieht man, wie die Instanz bisher angebunden war.
+   - `PIXELFED_VERSION=…`: `latest` oder `dev`.
+   - `local changes`: deine Server-Änderungen, z. B. die geänderte `docker-compose.yml`. Sie landen im Backup.
+   - `not installed completely`: Diese Meldung erscheint, falls Pixelfed nie ganz eingerichtet war.
+
+   Wenn dir dort etwas komisch vorkommt, schick mir die Ausgabe.
+
+3. **Umzug.** Die Seite ist danach ein paar Minuten offline, bis Image-Build und MariaDB-Upgrade durch sind:
+   ```bash
+   sudo bash /tmp/relocate-server.sh --domain pnoom.gallery --dir /var/www/htdocs/pnoom.gallery --apply
+   ```
+
+4. **Danach:**
+   - Im Browser die Seite, den Login und den Adminbereich prüfen.
+   - Dein nginx bleibt, wie er ist, weil der Port gleich bleibt (8081). Nur `client_max_body_size 100M` würde ich noch ergänzen, falls es fehlt.
+   - War Pixelfed nicht vollständig installiert, sagt das Skript das am Ende. Dann folgt `sudo /opt/pixelfed/pnoom.gallery/install.sh`.
+   - Updates laufen künftig mit `sudo /opt/pixelfed/pnoom.gallery/update.sh`.
+   - Läuft alles, löschst du irgendwann das Backup und das Rollback-Image. Die Befehle dafür stehen am Ende der Skript-Ausgabe.
+
+Falls etwas schiefgeht, stellt `/root/pixelfed-relocate-pnoom.gallery-<datum>/rollback.sh` den alten Zustand komplett wieder her.
+
+Falls du die lokale Testinstanz auf Port 8099 meintest: Die brauchst du nicht mehr. Aufräumen im Repo-Verzeichnis:
+
+```bash
+docker compose down && rm -rf src mariadb backups .env .installed
+```
